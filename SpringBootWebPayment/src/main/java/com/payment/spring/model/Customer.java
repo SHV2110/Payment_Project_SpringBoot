@@ -7,14 +7,14 @@ public class Customer {
 	@Id
 	private String customerid;
 	private String accountholdername;
-	private int overdraftflag;
+	private String overdraftflag;
 	private double clearbalance;
 	
 	
 	public Customer() {
 		// TODO Auto-generated constructor stub
 	}
-	public Customer(String customerid, String accountholdername, int overdraftflag, double clearbalance) {
+	public Customer(String customerid, String accountholdername, String overdraftflag, double clearbalance) {
 		super();
 		this.customerid = customerid;
 		this.accountholdername = accountholdername;
@@ -34,10 +34,10 @@ public class Customer {
 	public void setAccountholdername(String accountholdername) {
 		this.accountholdername = accountholdername;
 	}
-	public int getOverdraftflag() {
+	public String getOverdraftflag() {
 		return overdraftflag;
 	}
-	public void setOverdraftflag(int overdraftflag) {
+	public void setOverdraftflag(String overdraftflag) {
 		this.overdraftflag = overdraftflag;
 	}
 	public double getClearbalance() {

@@ -30,6 +30,15 @@ public class CustomerService {
 		return customers;
 	}
 	
+	public Customer getCustomerDetails(String customerID) {
+		Optional<Customer> customeroptional=custRepository.findById(customerID);
+		if (customeroptional.isPresent())
+		return customeroptional.get();
+		return null;
+		
+
+		}
+	
 	public  Customer findCustomerById(String id)
 	{	LOG.info("findCustomerById");
 		try {
@@ -43,12 +52,13 @@ public class CustomerService {
 			return null;
 		}
 	}
+
 	
 	public boolean sendMoney(Customer senderAcc,double amount) {
 		LOG.info("sendMoney");
 		String senderAccNo = senderAcc.getCustomerid();
 	    senderAcc = this.findCustomerById(senderAccNo);
-		if (senderAcc.getClearbalance() > amount || senderAcc.getOverdraftflag() == 1) {
+		if (senderAcc.getClearbalance() > amount || senderAcc.getOverdraftflag().equalsIgnoreCase("Yes") ) {
 			senderAcc.setClearbalance(senderAcc.getClearbalance()-amount);
 			custRepository.save(senderAcc);
 			System.out.println("Balance : " + senderAcc.getClearbalance());

@@ -39,11 +39,11 @@ public class TransactionService {
 			
 			try {
 				if(sdn.checker(transaction.getReceiveraccountholdername())) {
-					Customer c = transaction.getCustomerid();// parameter for sendmoney of custservice method
-					double ammount = transaction.getamount()+ (transaction.getamount() * 0.0025);//ammount para for send menoy method
+					Customer c = transaction.getCustomer();// parameter for sendmoney of custservice method
+					double ammount = transaction.getAmount()+ (transaction.getAmount() * 0.0025);//ammount para for send menoy method
 						if(customerService.sendMoney(c, ammount))
 						{
-							transaction.setTransferfees(transaction.getamount()*0.0025);
+							transaction.setTransferfees(transaction.getAmount()*0.0025);
 							transaction.setTransferdate(LocalDate.now());
 							this.transactionRepository.save(transaction);
 							return true;

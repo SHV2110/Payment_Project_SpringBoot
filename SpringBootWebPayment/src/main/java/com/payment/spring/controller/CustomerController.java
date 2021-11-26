@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,7 @@ import com.payment.spring.service.CustomerService;
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
+	private static final Logger LOG = LoggerFactory.getLogger(CustomerController.class);
 	
 	@GetMapping
 	public List<Customer> findCustomers()
@@ -31,19 +34,11 @@ public class CustomerController {
 		return this.customerService.getCustomers();
 	}
 	
-	@GetMapping("/{customerid}")
-	public ResponseEntity<Object> findCustomerById(@PathVariable String customerid)
-	{
-		try { 
-			Customer cust = this.customerService.findCustomerById(customerid);
-			return ResponseEntity.status(HttpStatus.OK)
-					.body(cust);
-					
-			
-		}catch (EntityNotFoundException e) {
-			System.out.println("error");
-			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body(new ResponsePage("failure", e.getMessage()));
-		}
+	
+	//custid
+	@GetMapping("/{customerID}")
+	public Customer getC(@PathVariable(name="customerID") String c) {
+	LOG.info("customerID verification");
+	return customerService.getCustomerDetails(c);
 	}
 }
