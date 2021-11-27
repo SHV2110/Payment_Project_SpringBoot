@@ -16,7 +16,7 @@ import com.payment.spring.service.TransactionService;
 
 
 @RestController
-@CrossOrigin()
+@CrossOrigin("*")
 @RequestMapping("/transactions")
 public class TransactionController {
 	

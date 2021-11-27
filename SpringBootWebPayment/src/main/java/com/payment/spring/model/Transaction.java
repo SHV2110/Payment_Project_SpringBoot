@@ -19,9 +19,15 @@ public class Transaction {
 	private Customer customer;
 	
 	@OneToOne
-	@JoinColumn(name="receiverBIC")
-	private Bank receiver;
+	@JoinColumn(name="bic")
+	private Bank bank;
 	
+	public Bank getBank() {
+		return bank;
+	}
+	public void setBank(Bank bank) {
+		this.bank = bank;
+	}
 	private String receiveraccountholdernumber;
 	
 	private String receiveraccountholdername;
@@ -41,13 +47,13 @@ public class Transaction {
 	public Transaction() {
 		// TODO Auto-generated constructor stub
 	}
-	public Transaction(int transactionid, Customer customer, Bank receiver, String receiveraccountholdernumber,
+	public Transaction(int transactionid, Customer customer, Bank bank, String receiveraccountholdernumber,
 			String receiveraccountholdername, String transfertypes, String message, double amount, double transferfees,
 			LocalDate transferdate) {
 		super();
 		this.transactionid = transactionid;
 		this.customer = customer;
-		this.receiver = receiver;
+		this.bank=bank;
 		this.receiveraccountholdernumber = receiveraccountholdernumber;
 		this.receiveraccountholdername = receiveraccountholdername;
 		this.transfertypes = transfertypes;
@@ -69,12 +75,7 @@ public class Transaction {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	public Bank getReceiver() {
-		return receiver;
-	}
-	public void setReceiver(Bank receiver) {
-		this.receiver = receiver;
-	}
+	
 	public String getReceiveraccountholdernumber() {
 		return receiveraccountholdernumber;
 	}
@@ -119,7 +120,7 @@ public class Transaction {
 	}
 	@Override
 	public String toString() {
-		return "Transaction [transactionid=" + transactionid + ", customer=" + customer + ", receiver=" + receiver
+		return "Transaction [transactionid=" + transactionid + ", customer=" + customer + ", receiver=" + bank
 				+ ", receiveraccountholdernumber=" + receiveraccountholdernumber + ", receiveraccountholdername="
 				+ receiveraccountholdername + ", transfertypes=" + transfertypes + ", message=" + message + ", amount="
 				+ amount + ", transferfees=" + transferfees + ", transferdate=" + transferdate + "]";
