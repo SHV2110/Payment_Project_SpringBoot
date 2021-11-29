@@ -1,5 +1,6 @@
 package com.payment.spring.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -35,5 +36,12 @@ public class CustomerController {
 	public Customer getC(@PathVariable(name="customerID") String c) {
 	LOG.info("customerID verification");
 	return customerService.getCustomerDetails(c);
+	}
+	
+	@GetMapping("name-check/{name}")
+	public boolean checkName(@PathVariable(name="name") String name) throws IOException {
+	LOG.info("Name Verification");
+	return customerService.checkName(name);
+
 	}
 }

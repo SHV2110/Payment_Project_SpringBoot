@@ -1,5 +1,6 @@
 package com.payment.spring.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,9 @@ public class CustomerService {
 	
 	@Autowired
 	private CustomerRepository custRepository;
+	
+	@Autowired
+	private SdnChecker sdnchecker;
 	private static final Logger LOG = LoggerFactory.getLogger(CustomerService.class);
 	public List<Customer> getCustomers()
 	{
@@ -66,5 +70,17 @@ public class CustomerService {
 		}
 		return false;
 	}
+	
+	public  boolean checkName(String name) throws IOException {
+		// TODO Auto-generated method stub
+		try {
+			if(sdnchecker.checker(name))
+			return false;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+		}
 	
 }

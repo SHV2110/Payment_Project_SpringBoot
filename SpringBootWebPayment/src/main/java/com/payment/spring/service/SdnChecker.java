@@ -6,6 +6,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.springframework.stereotype.Component;
+@Component
 public class SdnChecker {
 
 	public boolean checker(String phrase) throws IOException {
